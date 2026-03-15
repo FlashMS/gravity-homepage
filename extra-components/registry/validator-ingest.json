@@ -1,0 +1,10 @@
+﻿{
+    "timestamp":  "2025-11-05T21:07:11",
+    "validator":  "gravity-validator",
+    "capsule":  "gravity-homepage",
+    "status":  "ingested",
+    "port":  80,
+    "domain":  "homepage.vscgravity.com",
+    "fingerprint":  "capsule-index-html",
+    "ip":  "70.125.56.109"
+}

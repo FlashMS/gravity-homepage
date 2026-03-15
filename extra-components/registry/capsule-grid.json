@@ -1,0 +1,26 @@
+{
+  "grid": "Gravity Binary",
+  "anchor": "tokabg@yahoo.com",
+  "capsules": [
+    {
+      "name": "GravityHomepage",
+      "type": "static-html",
+      "purpose": "UI overlays, recruiter-facing proof"
+    },
+    {
+      "name": "GravityShield",
+      "type": "powershell-auth",
+      "purpose": "RBAC, auth overlays, PowerShell logic"
+    },
+    {
+      "name": "GravityAudit",
+      "type": "symbolic-audit",
+      "purpose": "Logs, config, symbolic audit loops"
+    },
+    {
+      "name": "GravityWallet",
+      "type": "flask-validator",
+      "purpose": "Flask, token logic, validator APIs"
+    }
+  ]
+}
