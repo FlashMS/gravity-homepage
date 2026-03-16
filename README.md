@@ -1,59 +1,64 @@
-AI Wallet Capsule
+Terraform Ascent Showcase
 
-The AI Wallet Capsule is a secure, deterministic, and consequence-aware capsule within the Gravity Binary platform. It manages identity-safe wallet operations, signed metadata, and capsule-to-validator interactions. This capsule is designed to operate under strict trust boundaries enforced by the Validator Capsule.
-
-Identity:
-Gravity Binary is a modular trust engine built around capsules, validators, and deterministic workflows. The AI Wallet Capsule provides secure wallet logic that integrates directly with the validator and registry.
+This repository demonstrates a clean, modular, and production-ready Terraform implementation for Azure environments. It is designed as a showcase of infrastructure-as-code best practices, reproducible deployments, and cloud engineering discipline.
 
 Purpose:
-Provide a secure wallet capsule that handles identity, metadata signing, capsule authentication, and deterministic wallet operations. This capsule ensures that all wallet actions follow Gravity Binary trust rules.
+Provide a reference implementation for deploying Azure resources using Terraform with clarity, structure, and deterministic workflows. This repo highlights how to build infrastructure that is maintainable, scalable, and aligned with modern cloud engineering standards.
+
+Overview:
+The Terraform Ascent Showcase includes examples of resource groups, networking, compute, storage, monitoring, and identity integration. It is structured to demonstrate reusable modules, environment separation, and safe deployment patterns.
 
 Architecture Summary:
-The Wallet Capsule interacts with the Validator Capsule for rule enforcement and the Registry for metadata discovery. All wallet operations are validated, signed, and executed deterministically.
+The architecture follows a layered Terraform model with modules, environment folders, and state isolation. Azure resources are provisioned using best practices for naming, tagging, and lifecycle management.
 
 ASCII Architecture Diagram:
-AI Wallet Capsule
-- Identity and Metadata
-- Signature Engine
-- Validator Integration
-- Registry Lookup
-- Deterministic Wallet Logic
+Terraform Ascent Showcase
+- Modules
+- Environments
+- Azure Resource Groups
+- Networking
+- Compute and Storage
+- Monitoring and Identity
 
 Key Concepts:
-Identity Safety: Wallet operations must be deterministic and trust-bound.
-Metadata Signing: All wallet metadata must be signed and validated.
-Validator Enforcement: No wallet action bypasses the validator.
-Deterministic Execution: Wallet operations must produce reproducible outcomes.
+Modules: Reusable building blocks for consistent infrastructure.
+State Management: Remote state storage for safe collaboration.
+Environment Separation: dev, test, and prod isolation.
+Deterministic Deployment: Reproducible infrastructure with no drift.
 
 Technical Notes:
-This repo contains wallet logic, metadata schemas, signing rules, and validator integration patterns. It is the authoritative source for wallet behavior in the Gravity Binary platform.
+This repo includes Terraform modules, environment definitions, variable files, and deployment scripts. It is intended as a learning and demonstration resource for Azure-focused cloud engineering.
 
 Deployment:
-This capsule is consumed by the platform runtime. It does not have a public endpoint. It is deployed alongside the validator and registry components.
+Terraform commands are used to initialize, plan, and apply infrastructure. Azure authentication is required before deployment.
+
+Example Commands:
+terraform init
+terraform plan
+terraform apply
 
 Project Structure:
-wallet/
-metadata/
-schemas/
-signing/
-validator-integration/
+modules/
+environments/
+variables/
+scripts/
 README.md
 
 Features:
-- Deterministic wallet operations
-- Metadata signing and validation
-- Validator-enforced trust boundaries
-- Registry metadata lookup
-- Identity-safe execution
+- Modular Terraform design
+- Azure resource provisioning
+- Environment isolation
+- Remote state support
+- Reusable patterns for cloud engineering
 
 Security Model:
-- No implicit trust between capsules
-- All wallet actions validated by the validator
-- Metadata must be signed and trusted
-- Deterministic rules prevent ambiguity
+- No secrets stored in code
+- Supports Azure Key Vault integration
+- Remote state locking recommended
+- Follows least-privilege principles
 
 Contact:
-For wallet or architecture discussions, refer to the main identity site at https://vscgravity.com.
+For cloud engineering or Terraform discussions, refer to https://vscgravity.com.
 
 License:
-This wallet implementation is part of the Gravity Binary platform. Reuse permitted with attribution.
+This Terraform showcase is part of my professional portfolio. Reuse permitted with attribution.
