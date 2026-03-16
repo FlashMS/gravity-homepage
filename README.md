@@ -1,59 +1,59 @@
-Gravity Capsules
+Validator Capsule
 
-This repository contains the core capsule implementations for the Gravity Binary platform. Capsules are modular execution units that operate within strict trust boundaries and follow deterministic, consequence-aware rules. This repo defines capsule behaviors, lifecycle, metadata, and interactions with the validator and registry.
+The Validator Capsule is the trust enforcement engine of the Gravity Binary platform. It evaluates capsule actions, enforces consequence-aware rules, validates metadata, and ensures deterministic, identity-safe execution across the entire capsule ecosystem.
 
 Identity:
-Gravity Binary is a modular trust engine built around capsules, validators, and deterministic workflows. This repo provides the concrete capsule implementations that power the platform.
+Gravity Binary is built on modular capsules, strict trust boundaries, and deterministic workflows. The Validator Capsule is the core authority that ensures every capsule interaction follows the platform's rules and trust model.
 
 Purpose:
-Provide a unified location for capsule definitions, capsule metadata, execution rules, and capsule-to-validator interaction logic. This repo is the foundation for building and extending the Gravity Binary capsule ecosystem.
+Provide a centralized validation layer that governs capsule execution, metadata integrity, registry interactions, and consequence-aware decision logic. The validator ensures that no capsule can act outside its defined boundaries.
 
 Architecture Summary:
-Capsules operate under strict boundaries and communicate through the registry and validator. Each capsule is isolated, deterministic, and identity-safe. Capsules do not trust each other implicitly. All interactions are validated.
+The Validator Capsule sits between all capsules and the registry. It validates requests, enforces rules, and ensures deterministic outcomes. No capsule can bypass the validator.
 
 ASCII Architecture Diagram:
-Gravity Binary Capsules
-- Execution Capsules
-- Wallet Capsule
-- Validator Capsule
-- Registry Integration
-- Deterministic Workflow Engine
+Validator Capsule
+- Capsule Request Intake
+- Metadata Validation
+- Rule Enforcement
+- Consequence Logic
+- Deterministic Response Engine
 
 Key Concepts:
-Capsule: A modular execution unit with a defined purpose and strict boundaries.
-Validator: Enforces trust, rules, and consequence-aware logic.
-Registry: Provides capsule discovery, metadata, and lifecycle coordination.
-Deterministic Execution: No ambiguity, reproducible outcomes, identity-safe.
+Validation: Ensures capsule actions follow defined rules.
+Consequence Logic: Determines allowed, denied, or conditional outcomes.
+Metadata Integrity: Ensures capsule metadata is signed and trusted.
+Deterministic Execution: Guarantees reproducible, identity-safe results.
 
 Technical Notes:
-This repo includes capsule definitions, metadata schemas, execution rules, and integration logic for the Gravity Binary validator and registry. Capsules are designed to be modular, replaceable, and independently deployable.
+This repo contains validator logic, rule definitions, metadata schemas, and capsule interaction patterns. It is the authoritative source for trust enforcement in the Gravity Binary platform.
 
 Deployment:
-This repo contains capsule logic and definitions. It does not have a live deployment endpoint. Capsules are consumed by the validator and registry components.
+This capsule is consumed by the platform runtime. It does not have a public endpoint. It is deployed alongside other capsules and the registry.
 
 Project Structure:
-capsules/
-metadata/
+validator/
+rules/
 schemas/
-execution-rules/
-registry-integration/
+metadata/
+execution-logic/
 README.md
 
 Features:
-- Capsule definitions and metadata
-- Execution rules and boundaries
-- Registry integration logic
-- Validator interaction patterns
-- Deterministic workflow support
+- Capsule request validation
+- Metadata signature checks
+- Rule enforcement engine
+- Consequence-aware decision logic
+- Deterministic workflow integration
 
 Security Model:
-- No implicit trust between capsules
-- Validator enforces all interactions
-- Registry provides signed metadata
-- Capsules operate in isolated boundaries
+- No capsule can bypass the validator
+- All interactions must be validated
+- Metadata must be signed and trusted
+- Deterministic rules prevent ambiguity
 
 Contact:
-For architecture or capsule development discussions, refer to the main identity site at https://vscgravity.com.
+For validator or architecture discussions, refer to the main identity site at https://vscgravity.com.
 
 License:
-This capsule framework is part of the Gravity Binary platform. Reuse permitted with attribution.
+This validator implementation is part of the Gravity Binary platform. Reuse permitted with attribution.
