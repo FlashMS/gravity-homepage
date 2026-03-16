@@ -1,64 +1,41 @@
-Terraform Ascent Showcase
+Hi, I'm Todd — Cloud Engineer, Capsule Architect, and Deterministic Workflow Builder.
 
-This repository demonstrates a clean, modular, and production-ready Terraform implementation for Azure environments. It is designed as a showcase of infrastructure-as-code best practices, reproducible deployments, and cloud engineering discipline.
+I design consequence-aware systems, modular capsule architectures, and reproducible cloud workflows. My work focuses on Azure engineering, automation, capsule-based trust engines, and identity-safe execution models. Everything I build follows the same principle: no ambiguity, no drift, deterministic outcomes every time.
 
-Purpose:
-Provide a reference implementation for deploying Azure resources using Terraform with clarity, structure, and deterministic workflows. This repo highlights how to build infrastructure that is maintainable, scalable, and aligned with modern cloud engineering standards.
+What I Work On:
+- Gravity Binary architecture and capsule ecosystem
+- Validator and wallet capsules with strict trust boundaries
+- Azure cloud engineering, IaC, and deterministic deployments
+- Portfolio systems that demonstrate clarity, structure, and reproducibility
 
-Overview:
-The Terraform Ascent Showcase includes examples of resource groups, networking, compute, storage, monitoring, and identity integration. It is structured to demonstrate reusable modules, environment separation, and safe deployment patterns.
+My Engineering Philosophy:
+- Deterministic workflows over guesswork
+- Explicit boundaries over implicit assumptions
+- Identity-safe execution over convenience
+- Architecture that explains itself
+- Documentation that matches the system
 
-Architecture Summary:
-The architecture follows a layered Terraform model with modules, environment folders, and state isolation. Azure resources are provisioned using best practices for naming, tagging, and lifecycle management.
+Featured Projects:
+gravity-homepage — Public homepage for vscgravity.com
+gravity-binary-architecture — Core architecture for the Gravity Binary platform
+gravity-capsules — Modular capsule implementations
+validatorCapsule — Trust enforcement and consequence logic
+AIwallet-capsule — Identity-safe wallet capsule with metadata signing
+terraform-ascent-showcase — Azure IaC with modular Terraform patterns
 
-ASCII Architecture Diagram:
-Terraform Ascent Showcase
-- Modules
-- Environments
-- Azure Resource Groups
-- Networking
-- Compute and Storage
-- Monitoring and Identity
+Skills and Focus Areas:
+- Azure: VM, Storage, VNet, AKS, Monitor, Backup, DR
+- Terraform: modular IaC, environment separation, remote state
+- Capsule architecture: registry, validator, metadata, deterministic execution
+- Automation: PowerShell, GitHub CLI, reproducible workflows
+- Cloud identity and trust boundaries
 
-Key Concepts:
-Modules: Reusable building blocks for consistent infrastructure.
-State Management: Remote state storage for safe collaboration.
-Environment Separation: dev, test, and prod isolation.
-Deterministic Deployment: Reproducible infrastructure with no drift.
+Professional Identity:
+I build systems that behave the same way every time. I design architectures that explain themselves. I write documentation that removes ambiguity. My repos reflect the same principle: clarity, structure, and deterministic engineering.
 
-Technical Notes:
-This repo includes Terraform modules, environment definitions, variable files, and deployment scripts. It is intended as a learning and demonstration resource for Azure-focused cloud engineering.
-
-Deployment:
-Terraform commands are used to initialize, plan, and apply infrastructure. Azure authentication is required before deployment.
-
-Example Commands:
-terraform init
-terraform plan
-terraform apply
-
-Project Structure:
-modules/
-environments/
-variables/
-scripts/
-README.md
-
-Features:
-- Modular Terraform design
-- Azure resource provisioning
-- Environment isolation
-- Remote state support
-- Reusable patterns for cloud engineering
-
-Security Model:
-- No secrets stored in code
-- Supports Azure Key Vault integration
-- Remote state locking recommended
-- Follows least-privilege principles
+Portfolio:
+https://vscgravity.com
 
 Contact:
-For cloud engineering or Terraform discussions, refer to https://vscgravity.com.
+For engineering roles, architecture discussions, or capsule collaboration, reach out through my portfolio site.
 
-License:
-This Terraform showcase is part of my professional portfolio. Reuse permitted with attribution.
