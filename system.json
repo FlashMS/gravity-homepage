@@ -1,6 +1,7 @@
-﻿{
+{
   "health": "Operational",
-  "lastUpdated": "2026-02-08T22:00:00Z",
-  "activeCapsules": 4,
-  "version": "v0.1"
+  "environment": "Local Development",
+  "activeCapsules": 8,
+  "version": "v0.2",
+  "lastUpdated": "2026-06-06T10:09:00Z"
 }

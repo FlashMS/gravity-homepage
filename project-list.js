@@ -1,5 +1,6 @@
-﻿console.log("project-list.js loaded");
+console.log("project-list.js loaded");
 
+// Gravity Binary Project List Capsule
 window.renderProjectList = function (projects) {
   const root = document.getElementById("project-list-root");
   if (!root) return;
@@ -11,7 +12,7 @@ window.renderProjectList = function (projects) {
 
   const items = projects
     .map(p => `
-      <div style="padding: 10px; border-bottom: 1px solid #333;">
+      <div style="padding: 16px; border-bottom: 1px solid #333;">
         <strong>${p.name}</strong><br>
         <span style="color: #aaa;">${p.description}</span>
       </div>

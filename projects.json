@@ -1,18 +1,51 @@
-﻿[
+k[
   {
-    "name": "Homepage Capsule",
-    "description": "The public-facing dynamic architecture surface for Gravity Binary."
+    "name": "Gravity Binary Architecture",
+    "description": "Core capsule system implementing deterministic reasoning, invariants, and consequence-aware workflows."
   },
   {
     "name": "Validator Capsule",
-    "description": "Validates capsule integrity, provenance, and execution rules."
+    "description": "Deterministic validator enforcing identity, structure, provenance, and capsule integrity."
   },
   {
-    "name": "Wallet Capsule",
-    "description": "Handles identity, signatures, and capsule ownership."
+    "name": "AI Wallet Capsule",
+    "description": "Identity-bound wallet capsule implementing signature logic and secure capsule ownership."
   },
   {
-    "name": "Execution Engine",
-    "description": "Runs capsule logic in a deterministic, consequence-aware environment."
+    "name": "Gravity Capsules",
+    "description": "Collection of modular capsules demonstrating consequence-aware reasoning patterns."
+  },
+  {
+    "name": "Terraform Ascent Showcase",
+    "description": "End-to-end Azure automation using IaC, reproducible deployments, and deterministic cloud workflows."
+  },
+  {
+    "name": "Azure Admin Portfolio",
+    "description": "Azure administration tasks, IaC examples, and automation workflows for cloud operations."
+  },
+  {
+    "name": "Gravity Homepage",
+    "description": "Static homepage for vscgravity.com built using deterministic file creation and capsule structure."
+  },
+  {
+    "name": "Gravity Binary Site",
+    "description": "Public documentation and architecture maps for the Gravity Binary ecosystem."
+  },
+  {
+    "name": "AI Bootstrap",
+    "description": "Early AI engineering experiments exploring capsule patterns and reasoning workflows."
+  },
+  {
+    "name": "ToddWolfProject",
+    "description": "Sandbox for deterministic workflows, CLI automation, and experimental capsule logic."
+  },
+  {
+    "name": "www-vscgravity-com",
+    "description": "Legacy prototype of the vscgravity.com site."
+  },
+  {
+    "name": "vscgravity.com",
+    "description": "DNS and domain configuration for vscgravity.com."
   }
 ]
+

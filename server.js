@@ -1,10 +1,10 @@
-﻿const express = require("express");
+const express = require("express");
 const path = require("path");
 
 const app = express();
 
-// Azure Container Apps expects your app to listen on PORT or 80
-const PORT = process.env.PORT || 80;
+// Local development uses port 3000
+const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname)));
 
@@ -15,3 +15,4 @@ app.get("*", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Gravity Binary homepage capsule running on port ${PORT}`);
 });
+
