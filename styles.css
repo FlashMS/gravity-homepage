@@ -1,4 +1,4 @@
-﻿/* GLOBAL */
+/* GLOBAL */
 body {
   font-family: Inter, sans-serif;
   background: #1A1A1A;
@@ -22,11 +22,29 @@ a {
   border-bottom: 1px solid #333;
 }
 
+.nav a.active {
+  color: #4da3ff;
+  font-weight: bold;
+}
+
 /* HERO */
 .hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: #0d0d0d;
+  color: #ffffff;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 64px 24px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  opacity: 0.85;
 }
 
 /* SECTIONS */
@@ -60,7 +78,8 @@ a {
   color: #777;
   font-size: 14px;
 }
-/* Architecture Section */
+
+/* ARCHITECTURE SECTION */
 #architecture {
   padding: 40px;
   max-width: 900px;
@@ -86,7 +105,4 @@ a {
   margin-left: 20px;
   margin-bottom: 10px;
 }
-.nav a.active {
-  color: #4da3ff;
-  font-weight: bold;
-}
+
