@@ -2,55 +2,316 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Capsules — Gravity Binary</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Capsules · GravityAI · Gravity Binary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GravityAI Capsules — deterministic reasoning units powering the BinaryAI engine.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #0f1117;
+      --bg-surface: #141722;
+      --bg-alt: #0b0d13;
+      --accent-cyan: #00e5ff;
+      --accent-blue: #2f6bff;
+      --accent-soft: #7b61ff;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-soft: #1f2933;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui;
+      background: radial-gradient(circle at top left, #1b2335 0%, #05060a 55%, #020308 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      border-bottom: 1px solid var(--border-soft);
+      background: rgba(15,17,23,0.95);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-left { display: flex; align-items: center; gap: 0.75rem; }
+
+    .brand-mark {
+      width: 32px; height: 32px;
+      border-radius: 10px;
+      background: radial-gradient(circle at 30% 20%, var(--accent-cyan), transparent 55%),
+                  radial-gradient(circle at 70% 80%, var(--accent-soft), transparent 55%);
+      border: 1px solid rgba(148,163,184,0.35);
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.8), 0 12px 30px rgba(0,0,0,0.75);
+      position: relative;
+    }
+
+    .brand-mark::after {
+      content: "GX";
+      font-family: 'Space Grotesk';
+      font-size: 0.55rem;
+      letter-spacing: 0.12em;
+      color: rgba(15,23,42,0.9);
+      background: rgba(226,232,240,0.9);
+      padding: 2px 6px;
+      border-radius: 999px;
+      position: absolute;
+      bottom: -6px;
+      right: -4px;
+    }
+
+    .brand-text { display: flex; flex-direction: column; }
+    .brand-title { font-family: 'Space Grotesk'; font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .brand-sub { font-size: 0.75rem; color: var(--text-muted); }
+
+    .nav-links { display: flex; gap: 1.25rem; font-size: 0.85rem; }
+    .nav-link { color: var(--text-muted); border-bottom: 1px solid transparent; }
+    .nav-link:hover { color: var(--text-main); border-color: rgba(148,163,184,0.5); }
+
+    .nav-pill {
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--accent-cyan);
+      font-size: 0.8rem;
+      background: rgba(0,229,255,0.12);
+    }
+
+    main { flex: 1; }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3rem;
+    }
+
+    .page-title {
+      font-family: 'Space Grotesk';
+      font-size: 2.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 42rem;
+      margin-bottom: 2rem;
+    }
+
+    .capsule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .capsule {
+      background: var(--bg-surface);
+      border-radius: 16px;
+      border: 1px solid rgba(31,41,55,0.8);
+      padding: 1.5rem;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.65);
+    }
+
+    .capsule-title {
+      font-family: 'Space Grotesk';
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent-cyan);
+    }
+
+    .capsule-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+    }
+
+    .capsule-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--accent-soft);
+      background: rgba(15,23,42,0.9);
+      margin-top: 0.5rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-soft);
+      padding: 0.9rem 1.25rem 1.2rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: #05060a;
+    }
+
+    .footer-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-links { display: flex; gap: 0.75rem; }
+    .footer-link:hover { color: var(--accent-cyan); }
+  </style>
 </head>
 
 <body>
 
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="capsules.html" class="active">Capsules</a>
-    <a href="architecture.html">Architecture</a>
-    <a href="cloud.html">Cloud</a>
-    <a href="status.html">System Status</a>
-  </nav>
-
-  <section class="section">
-    <h1>Capsule Registry</h1>
-    <p>Each capsule is an isolated, deterministic unit of reasoning.</p>
-
-    <div class="grid">
-      <div class="project-card">
-        <h3>DirectoryInvariantValidator</h3>
-        <p>Ensures required directories exist and are non‑empty.</p>
-      </div>
-
-      <div class="project-card">
-        <h3>RequiredFilePresenceReasoner</h3>
-        <p>Verifies required files exist and match expected structure.</p>
-      </div>
-
-      <div class="project-card">
-        <h3>TestExecutionCapsule</h3>
-        <p>Executes tests and classifies failures deterministically.</p>
-      </div>
-
-      <div class="project-card">
-        <h3>InstructionAlignmentChecker</h3>
-        <p>Detects contradictions between implementation and instructions.</p>
-      </div>
-
-      <div class="project-card">
-        <h3>ProvenanceCapsule</h3>
-        <p>Tracks origin, lineage, and transformation of artifacts.</p>
+<header>
+  <div class="nav">
+    <div class="nav-left">
+      <div class="brand-mark"></div>
+      <div class="brand-text">
+        <div class="brand-title">GravityAI</div>
+        <div class="brand-sub">Capsule Architecture · Gravity Binary</div>
       </div>
     </div>
-  </section>
 
-  <footer class="footer">
-    © 2026 Gravity Binary — Deterministic Engineering
-  </footer>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="architecture.html" class="nav-link">GravityAI Architecture</a>
+      <a href="capsules.html" class="nav-link">Capsules</a>
+      <a href="cloud.html" class="nav-link">Cloud</a>
+      <a href="AZ104/" class="nav-link">AZ‑104</a>
+      <a href="status.html" class="nav-link">System Status</a>
+      <a href="https://github.com/FlashMS/gravity-homepage" class="nav-pill">Gravity Binary</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="page">
+
+    <h1 class="page-title">GravityAI Capsules</h1>
+    <p class="page-subtitle">
+      Capsules are the core reasoning units of GravityAI. Each capsule has a single responsibility,
+      deterministic behavior, and no side effects. Together, they form the BinaryAI reasoning engine.
+    </p>
+
+    <div class="capsule-grid">
+
+      <!-- Capsule 1 -->
+      <div class="capsule">
+        <div class="capsule-title">DirectoryInvariantValidator</div>
+        <div class="capsule-desc">
+          Ensures required directories exist and are not empty. Eliminates silent failures caused by
+          missing or empty folders.
+        </div>
+        <div class="capsule-tag">Invariant Layer</div>
+      </div>
+
+      <!-- Capsule 2 -->
+      <div class="capsule">
+        <div class="capsule-title">RequiredFilePresenceValidator</div>
+        <div class="capsule-desc">
+          Checks for required files such as instruction.md, task.toml, tests, and solution files.
+          Prevents invalid task structures.
+        </div>
+        <div class="capsule-tag">Invariant Layer</div>
+      </div>
+
+      <!-- Capsule 3 -->
+      <div class="capsule">
+        <div class="capsule-title">InstructionAlignmentCapsule</div>
+        <div class="capsule-desc">
+          Validates that instructions, tests, and metadata align. Detects contradictions, missing
+          requirements, and mismatches.
+        </div>
+        <div class="capsule-tag">Deterministic Reasoning</div>
+      </div>
+
+      <!-- Capsule 4 -->
+      <div class="capsule">
+        <div class="capsule-title">TestExecutionCapsule</div>
+        <div class="capsule-desc">
+          Executes tests in a deterministic environment. Classifies failures as logic errors,
+          environment issues, or structural mismatches.
+        </div>
+        <div class="capsule-tag">Deterministic Reasoning</div>
+      </div>
+
+      <!-- Capsule 5 -->
+      <div class="capsule">
+        <div class="capsule-title">ConsequenceCapsule</div>
+        <div class="capsule-desc">
+          Maps invariant and reasoning failures to structured consequences. Enables automated
+          classification of failure modes.
+        </div>
+        <div class="capsule-tag">Reasoning Layer</div>
+      </div>
+
+      <!-- Capsule 6 -->
+      <div class="capsule">
+        <div class="capsule-title">ProvenanceCapsule</div>
+        <div class="capsule-desc">
+          Tracks the reasoning path, capsule outputs, and decision chain. Ensures transparency and
+          reproducibility.
+        </div>
+        <div class="capsule-tag">Meta Layer</div>
+      </div>
+
+      <!-- Capsule 7 -->
+      <div class="capsule">
+        <div class="capsule-title">SnorkelCapsule</div>
+        <div class="capsule-desc">
+          Specialized capsule for Snorkel/Harbor/Terminus tasks. Validates structure, metadata,
+          environment, and test harness consistency.
+        </div>
+        <div class="capsule-tag">Specialized Capsule</div>
+      </div>
+
+      <!-- Capsule 8 -->
+      <div class="capsule">
+        <div class="capsule-title">ReflexCapsule</div>
+        <div class="capsule-desc">
+          Implements GravityAI reflex behavior: confirm → align → act. Ensures stable execution
+          states and predictable reasoning.
+        </div>
+        <div class="capsule-tag">Execution Layer</div>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-shell">
+    <div>© <span id="year"></span> Gravity Binary · GravityAI · BinaryAI</div>
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">Home</a>
+      <a href="architecture.html" class="footer-link">GravityAI</a>
+      <a href="cloud.html" class="footer-link">Cloud</a>
+      <a href="AZ104/" class="footer-link">AZ‑104</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
