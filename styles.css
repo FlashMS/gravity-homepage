@@ -106,35 +106,85 @@ a {
   margin-bottom: 10px;
 }
 
-/* === GRAVITYAI ACCESSIBILITY OVERRIDES === */
-/* Larger, more readable symbols and labels */
+/* === GRAVITYAI ACCESSIBILITY OVERRIDES v3 (BIG TEXT MODE) === */
 
 .hero-label {
-  font-size: 1rem !important;
-  letter-spacing: 0.25em !important;
+  font-size: 1.35rem !important;
+  letter-spacing: 0.32em !important;
 }
 
 .panel-title {
-  font-size: 1.1rem !important;
+  font-size: 1.35rem !important;
 }
 
 .panel-tag {
-  font-size: 0.95rem !important;
-  padding: 0.4rem 0.85rem !important;
+  font-size: 1.25rem !important;
+  padding: 0.65rem 1.25rem !important;
 }
 
 .panel-item-pill {
-  font-size: 0.95rem !important;
-  padding: 0.45rem 0.9rem !important;
+  font-size: 1.25rem !important;
+  padding: 0.7rem 1.35rem !important;
 }
 
 .brand-mark::after {
-  font-size: 0.85rem !important;
-  padding: 4px 10px !important;
+  font-size: 1.2rem !important;
+  padding: 6px 14px !important;
 }
 
 .capsule-tag {
-  font-size: 0.95rem !important;
-  padding: 0.4rem 0.85rem !important;
+  font-size: 1.25rem !important;
+  padding: 0.65rem 1.25rem !important;
 }
 
+/* Optional: slightly larger body text for comfort */
+body {
+  font-size: 1.15rem !important;
+  line-height: 1.75 !important;
+}
+/* === GRAVITYAI ACCESSIBILITY OVERRIDES v4 (ULTRA COMFORT MODE) === */
+
+/* Global body text — calm, readable, terminal-friendly */
+body {
+  font-size: 1.3rem !important;
+  line-height: 1.9 !important;
+}
+
+/* Hero section text */
+.hero h1 {
+  font-size: 3.6rem !important;
+}
+
+.hero p {
+  font-size: 1.6rem !important;
+  line-height: 1.9 !important;
+}
+
+/* Index panel titles */
+.panel-title {
+  font-size: 1.5rem !important;
+}
+
+/* Pills and tags — big, chunky, readable */
+.panel-tag,
+.panel-item-pill,
+.capsule-tag {
+  font-size: 1.35rem !important;
+  padding: 0.8rem 1.45rem !important;
+  border-radius: 10px !important;
+}
+
+/* Brand badge */
+.brand-mark::after {
+  font-size: 1.35rem !important;
+  padding: 8px 16px !important;
+}
+
+/* Increase spacing between items for breathing room */
+.grid {
+  gap: 32px !important;
+}
+
+.section {
+  padding: 80px 32px !important;
+}
