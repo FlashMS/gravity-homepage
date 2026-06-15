@@ -271,3 +271,93 @@ pre, code {
 .grid {
   gap: 40px !important;
 }
+/* --- V4 Compact Layout Overrides --- */
+
+section {
+    padding: 40px 0; /* reduce huge V5 spacing */
+}
+
+.container {
+    max-width: 760px; /* V4 width */
+    margin: 0 auto;
+}
+
+/* Titles */
+h1, h2, h3 {
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+/* Cloud page readability */
+.cloud-section-title {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: #4fd1c5;
+}
+
+.cloud-text {
+    max-width: 720px;
+    line-height: 1.45;
+}
+
+/* ASCII boxes (V4 size) */
+.ascii-box {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.85rem;
+    line-height: 1.2;
+    padding: 6px 10px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+    margin: 16px 0;
+}
+
+/* Section divider (V4 style) */
+.section-divider {
+    margin: 32px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+/* --- V4 Compact Layout Overrides --- */
+
+section {
+    padding: 40px 0; /* reduce huge V5 spacing */
+}
+
+.container {
+    max-width: 760px; /* V4 width */
+    margin: 0 auto;
+}
+
+/* Titles */
+h1, h2, h3 {
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+/* Cloud page readability */
+.cloud-section-title {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    color: #4fd1c5;
+}
+
+.cloud-text {
+    max-width: 720px;
+    line-height: 1.45;
+}
+
+/* ASCII boxes (V4 size) */
+.ascii-box {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.85rem;
+    line-height: 1.2;
+    padding: 6px 10px;
+    background: rgba(255,255,255,0.03);
+    border-radius: 6px;
+    margin: 16px 0;
+}
+
+/* Section divider (V4 style) */
+.section-divider {
+    margin: 32px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
