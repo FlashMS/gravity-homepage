@@ -106,3 +106,35 @@ a {
   margin-bottom: 10px;
 }
 
+/* === GRAVITYAI ACCESSIBILITY OVERRIDES === */
+/* Larger, more readable symbols and labels */
+
+.hero-label {
+  font-size: 1rem !important;
+  letter-spacing: 0.25em !important;
+}
+
+.panel-title {
+  font-size: 1.1rem !important;
+}
+
+.panel-tag {
+  font-size: 0.95rem !important;
+  padding: 0.4rem 0.85rem !important;
+}
+
+.panel-item-pill {
+  font-size: 0.95rem !important;
+  padding: 0.45rem 0.9rem !important;
+}
+
+.brand-mark::after {
+  font-size: 0.85rem !important;
+  padding: 4px 10px !important;
+}
+
+.capsule-tag {
+  font-size: 0.95rem !important;
+  padding: 0.4rem 0.85rem !important;
+}
+
