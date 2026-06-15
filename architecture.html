@@ -2,50 +2,339 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Architecture — Gravity Binary</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>GravityAI Architecture · Gravity Binary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GravityAI — the deterministic reasoning architecture behind BinaryAI, built by Gravity Binary.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #0f1117;
+      --bg-surface: #141722;
+      --bg-alt: #0b0d13;
+      --accent-cyan: #00e5ff;
+      --accent-blue: #2f6bff;
+      --accent-soft: #7b61ff;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-soft: #1f2933;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui;
+      background: radial-gradient(circle at top left, #1b2335 0%, #05060a 55%, #020308 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      border-bottom: 1px solid var(--border-soft);
+      background: rgba(15,17,23,0.95);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-left { display: flex; align-items: center; gap: 0.75rem; }
+
+    .brand-mark {
+      width: 32px; height: 32px;
+      border-radius: 10px;
+      background: radial-gradient(circle at 30% 20%, var(--accent-cyan), transparent 55%),
+                  radial-gradient(circle at 70% 80%, var(--accent-soft), transparent 55%);
+      border: 1px solid rgba(148,163,184,0.35);
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.8), 0 12px 30px rgba(0,0,0,0.75);
+      position: relative;
+    }
+
+    .brand-mark::after {
+      content: "AI";
+      font-family: 'Space Grotesk';
+      font-size: 0.55rem;
+      letter-spacing: 0.12em;
+      color: rgba(15,23,42,0.9);
+      background: rgba(226,232,240,0.9);
+      padding: 2px 6px;
+      border-radius: 999px;
+      position: absolute;
+      bottom: -6px;
+      right: -4px;
+    }
+
+    .brand-text { display: flex; flex-direction: column; }
+    .brand-title { font-family: 'Space Grotesk'; font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .brand-sub { font-size: 0.75rem; color: var(--text-muted); }
+
+    .nav-links { display: flex; gap: 1.25rem; font-size: 0.85rem; }
+    .nav-link { color: var(--text-muted); border-bottom: 1px solid transparent; }
+    .nav-link:hover { color: var(--text-main); border-color: rgba(148,163,184,0.5); }
+
+    .nav-pill {
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--accent-cyan);
+      font-size: 0.8rem;
+      background: rgba(0,229,255,0.12);
+    }
+
+    main { flex: 1; }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3rem;
+    }
+
+    .page-title {
+      font-family: 'Space Grotesk';
+      font-size: 2.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 42rem;
+      margin-bottom: 2rem;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+      padding: 1.75rem 1.5rem;
+      background: var(--bg-surface);
+      border-radius: 16px;
+      border: 1px solid rgba(31,41,55,0.8);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.65);
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk';
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      color: var(--accent-cyan);
+    }
+
+    .section-text {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      line-height: 1.55;
+      margin-bottom: 1rem;
+    }
+
+    .list { margin-left: 1rem; margin-bottom: 1rem; }
+    .list li { margin-bottom: 0.4rem; color: var(--text-muted); }
+
+    .diagram {
+      padding: 1.25rem;
+      background: var(--bg-alt);
+      border-radius: 12px;
+      border: 1px solid rgba(148,163,184,0.25);
+      font-family: monospace;
+      font-size: 0.85rem;
+      white-space: pre;
+      overflow-x: auto;
+      margin-bottom: 1.5rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-soft);
+      padding: 0.9rem 1.25rem 1.2rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: #05060a;
+    }
+
+    .footer-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-links { display: flex; gap: 0.75rem; }
+    .footer-link:hover { color: var(--accent-cyan); }
+  </style>
 </head>
 
 <body>
 
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="capsules.html">Capsules</a>
-    <a href="architecture.html" class="active">Architecture</a>
-    <a href="cloud.html">Cloud</a>
-    <a href="status.html">System Status</a>
-  </nav>
+<header>
+  <div class="nav">
+    <div class="nav-left">
+      <div class="brand-mark"></div>
+      <div class="brand-text">
+        <div class="brand-title">GravityAI</div>
+        <div class="brand-sub">The Architecture Behind BinaryAI · Gravity Binary</div>
+      </div>
+    </div>
 
-  <section id="architecture">
-    <h1>Binary Architecture</h1>
-    <p>Consequence‑aware systems built on invariants, capsules, and deterministic reasoning.</p>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="architecture.html" class="nav-link">GravityAI Architecture</a>
+      <a href="capsules.html" class="nav-link">Capsules</a>
+      <a href="cloud.html" class="nav-link">Cloud</a>
+      <a href="AZ104/" class="nav-link">AZ‑104</a>
+      <a href="status.html" class="nav-link">System Status</a>
+      <a href="https://github.com/FlashMS/gravity-homepage" class="nav-pill">Gravity Binary</a>
+    </nav>
+  </div>
+</header>
 
-    <h3>1. Invariant Layer — The Stable Base</h3>
-    <p>The foundation of Gravity Binary is built on invariants: truths that do not change.</p>
-    <ul>
-      <li>Required files must exist</li>
-      <li>Directories must not be empty</li>
-      <li>Paths must match expected structure</li>
-      <li>Outputs must not be empty</li>
-      <li>Tests must be runnable</li>
-    </ul>
+<main>
+  <div class="page">
 
-    <h3>2. Deterministic Reasoning Layer</h3>
-    <p>Rule‑based classification of failure modes.</p>
+    <h1 class="page-title">GravityAI Architecture</h1>
+    <p class="page-subtitle">
+      GravityAI is the deterministic reasoning architecture that powers BinaryAI.
+      It is built on invariants, capsules, consequence awareness, and structured reasoning.
+      This page explains the full architecture stack.
+    </p>
 
-    <h3>3. Capsule Layer — Modular Intelligence</h3>
-    <p>Composable reasoning units forming a deterministic engine.</p>
+    <!-- SECTION 1 -->
+    <div class="section">
+      <div class="section-title">1. The Three-Layer Reasoning Model</div>
+      <div class="section-text">
+        GravityAI is built on a clean, layered model of reasoning:
+      </div>
 
-    <h3>4. Human‑in‑the‑Loop Layer</h3>
-    <p>Humans resolve ambiguity, contradictions, and subtle logic issues.</p>
+      <ul class="list">
+        <li><strong>Layer 1 — Invariants:</strong> Binary truths that never change. File exists. Directory not empty. Tests present.</li>
+        <li><strong>Layer 2 — Deterministic Reasoning:</strong> Rule-based logic. If file exists but tests fail → logic error.</li>
+        <li><strong>Layer 3 — Human Judgment:</strong> Ambiguity, contradictions, solvability issues.</li>
+      </ul>
 
-    <h3>5. The Philosophy</h3>
-    <p><strong>Automation begins where ambiguity ends.</strong></p>
-  </section>
+      <div class="diagram">
++-----------------------------+
+|     GravityAI Layers       |
++-----------------------------+
+|  L3: Human Judgment         |
+|  L2: Deterministic Reasoning|
+|  L1: Invariants             |
++-----------------------------+
+      </div>
+    </div>
 
-  <footer class="footer">
-    © 2026 Gravity Binary — Deterministic Engineering
-  </footer>
+    <!-- SECTION 2 -->
+    <div class="section">
+      <div class="section-title">2. Capsule Architecture</div>
+      <div class="section-text">
+        GravityAI uses capsules — isolated reasoning units with a single responsibility.
+      </div>
+
+      <ul class="list">
+        <li>DirectoryInvariantValidator</li>
+        <li>RequiredFilePresenceValidator</li>
+        <li>InstructionAlignmentCapsule</li>
+        <li>TestExecutionCapsule</li>
+        <li>ConsequenceCapsule</li>
+        <li>ProvenanceCapsule</li>
+      </ul>
+
+      <div class="diagram">
++-------------------------------+
+|         Capsule Model         |
++-------------------------------+
+|  Input → Capsule → Output     |
+|  Each capsule:                |
+|   - Single responsibility     |
+|   - Deterministic behavior    |
+|   - No side effects           |
++-------------------------------+
+      </div>
+    </div>
+
+    <!-- SECTION 3 -->
+    <div class="section">
+      <div class="section-title">3. The GravityAI Pipeline</div>
+      <div class="section-text">
+        The pipeline is deterministic and always follows the same execution path.
+      </div>
+
+      <div class="diagram">
++------------------------------------------------+
+|                GravityAI Pipeline              |
++------------------------------------------------+
+|  1. Load Task                                  |
+|  2. Run Invariant Capsules                     |
+|  3. Run Deterministic Reasoning Capsules       |
+|  4. Aggregate Results                          |
+|  5. Produce Structured Output                  |
++------------------------------------------------+
+      </div>
+    </div>
+
+    <!-- SECTION 4 -->
+    <div class="section">
+      <div class="section-title">4. Why GravityAI Exists</div>
+      <div class="section-text">
+        GravityAI solves a real problem: AI systems fail silently.
+        Missing files, empty directories, hallucinated paths, broken tests —
+        these failures waste human time and compute.
+      </div>
+
+      <div class="section-text">
+        GravityAI eliminates entire classes of failures by enforcing invariants
+        and deterministic reasoning before humans ever see the task.
+      </div>
+    </div>
+
+    <!-- SECTION 5 -->
+    <div class="section">
+      <div class="section-title">5. BinaryAI: The Engine Built on GravityAI</div>
+      <div class="section-text">
+        BinaryAI is the first reasoning engine built on the GravityAI architecture.
+        It uses the invariant layer, capsule model, and deterministic pipeline
+        to evaluate tasks, classify failures, and automate reasoning.
+      </div>
+
+      <div class="diagram">
+BinaryAI
+   ↑ built on
+GravityAI Architecture
+   ↑ built by
+Gravity Binary Studio
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-shell">
+    <div>© <span id="year"></span> Gravity Binary · GravityAI · BinaryAI</div>
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">Home</a>
+      <a href="capsules.html" class="footer-link">Capsules</a>
+      <a href="cloud.html" class="footer-link">Cloud</a>
+      <a href="AZ104/" class="footer-link">AZ‑104</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
+
