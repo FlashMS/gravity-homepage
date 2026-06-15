@@ -234,3 +234,40 @@ body {
 .section {
   padding: 100px 40px !important;
 }
+/* === GRAVITYAI ACCESSIBILITY OVERRIDES v6 (TRUE GLOBAL MODE) === */
+
+/* Global text scaling */
+body, p, li, ul, ol {
+  font-size: 1.45rem !important;
+  line-height: 2.0 !important;
+}
+
+/* All headings */
+h1 {
+  font-size: 4rem !important;
+}
+
+h2 {
+  font-size: 2.6rem !important;
+}
+
+h3 {
+  font-size: 2.1rem !important;
+}
+
+/* Code blocks */
+pre, code {
+  font-size: 1.35rem !important;
+  line-height: 2.0 !important;
+  padding: 1.2rem !important;
+}
+
+/* Section spacing */
+.section, section {
+  padding: 100px 40px !important;
+}
+
+/* Grid spacing */
+.grid {
+  gap: 40px !important;
+}
