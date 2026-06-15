@@ -2,50 +2,314 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Status — Gravity Binary</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>System Status · BinaryAI · GravityAI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BinaryAI system status — operational overview of GravityAI architecture and Gravity Binary components.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #0f1117;
+      --bg-surface: #141722;
+      --bg-alt: #0b0d13;
+      --accent-cyan: #00e5ff;
+      --accent-blue: #2f6bff;
+      --accent-soft: #7b61ff;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-soft: #1f2933;
+      --good: #00ff9d;
+      --warn: #ffcc00;
+      --bad: #ff4d4d;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', system-ui;
+      background: radial-gradient(circle at top left, #1b2335 0%, #05060a 55%, #020308 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    header {
+      border-bottom: 1px solid var(--border-soft);
+      background: rgba(15,17,23,0.95);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0.85rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-left { display: flex; align-items: center; gap: 0.75rem; }
+
+    .brand-mark {
+      width: 32px; height: 32px;
+      border-radius: 10px;
+      background: radial-gradient(circle at 30% 20%, var(--accent-cyan), transparent 55%),
+                  radial-gradient(circle at 70% 80%, var(--accent-soft), transparent 55%);
+      border: 1px solid rgba(148,163,184,0.35);
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.8), 0 12px 30px rgba(0,0,0,0.75);
+      position: relative;
+    }
+
+    .brand-mark::after {
+      content: "STS";
+      font-family: 'Space Grotesk';
+      font-size: 0.55rem;
+      letter-spacing: 0.12em;
+      color: rgba(15,23,42,0.9);
+      background: rgba(226,232,240,0.9);
+      padding: 2px 6px;
+      border-radius: 999px;
+      position: absolute;
+      bottom: -6px;
+      right: -4px;
+    }
+
+    .brand-text { display: flex; flex-direction: column; }
+    .brand-title { font-family: 'Space Grotesk'; font-size: 1.05rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .brand-sub { font-size: 0.75rem; color: var(--text-muted); }
+
+    .nav-links { display: flex; gap: 1.25rem; font-size: 0.85rem; }
+    .nav-link { color: var(--text-muted); border-bottom: 1px solid transparent; }
+    .nav-link:hover { color: var(--text-main); border-color: rgba(148,163,184,0.5); }
+
+    .nav-pill {
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--accent-cyan);
+      font-size: 0.8rem;
+      background: rgba(0,229,255,0.12);
+    }
+
+    main { flex: 1; }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3rem;
+    }
+
+    .page-title {
+      font-family: 'Space Grotesk';
+      font-size: 2.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 42rem;
+      margin-bottom: 2rem;
+    }
+
+    .status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .status-card {
+      background: var(--bg-surface);
+      border-radius: 16px;
+      border: 1px solid rgba(31,41,55,0.8);
+      padding: 1.5rem;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.65);
+    }
+
+    .status-title {
+      font-family: 'Space Grotesk';
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent-cyan);
+    }
+
+    .status-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+    }
+
+    .status-indicator {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #020617;
+    }
+
+    .good { background: var(--good); }
+    .warn { background: var(--warn); }
+    .bad  { background: var(--bad); }
+
+    footer {
+      border-top: 1px solid var(--border-soft);
+      padding: 0.9rem 1.25rem 1.2rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: #05060a;
+    }
+
+    .footer-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .footer-links { display: flex; gap: 0.75rem; }
+    .footer-link:hover { color: var(--accent-cyan); }
+  </style>
 </head>
 
 <body>
 
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="capsules.html">Capsules</a>
-    <a href="architecture.html">Architecture</a>
-    <a href="cloud.html">Cloud</a>
-    <a href="status.html" class="active">System Status</a>
-  </nav>
-
-  <section class="section">
-    <h1>System Status</h1>
-    <p>Operational overview of Gravity Binary components.</p>
-
-    <div class="grid">
-      <div class="project-card">
-        <h3>Capsule Engine</h3>
-        <p>Status: <strong>Online</strong></p>
-      </div>
-
-      <div class="project-card">
-        <h3>Azure Infrastructure</h3>
-        <p>Status: <strong>Healthy</strong></p>
-      </div>
-
-      <div class="project-card">
-        <h3>Container Apps</h3>
-        <p>Status: <strong>Running</strong></p>
-      </div>
-
-      <div class="project-card">
-        <h3>Homepage</h3>
-        <p>Status: <strong>Serving</strong></p>
+<header>
+  <div class="nav">
+    <div class="nav-left">
+      <div class="brand-mark"></div>
+      <div class="brand-text">
+        <div class="brand-title">BinaryAI</div>
+        <div class="brand-sub">System Status · GravityAI · Gravity Binary</div>
       </div>
     </div>
-  </section>
 
-  <footer class="footer">
-    © 2026 Gravity Binary — Deterministic Engineering
-  </footer>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="architecture.html" class="nav-link">GravityAI Architecture</a>
+      <a href="capsules.html" class="nav-link">Capsules</a>
+      <a href="cloud.html" class="nav-link">Cloud</a>
+      <a href="AZ104/" class="nav-link">AZ‑104</a>
+      <a href="status.html" class="nav-link">System Status</a>
+      <a href="https://github.com/FlashMS/gravity-homepage" class="nav-pill">Gravity Binary</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="page">
+
+    <h1 class="page-title">System Status</h1>
+    <p class="page-subtitle">
+      Operational overview of the GravityAI architecture, BinaryAI engine, and Gravity Binary cloud components.
+      All systems are deterministic, inspectable, and cloud‑anchored.
+    </p>
+
+    <div class="status-grid">
+
+      <!-- Status 1 -->
+      <div class="status-card">
+        <div class="status-title">GravityAI Architecture</div>
+        <div class="status-desc">
+          Core reasoning framework, invariant layer, capsule engine, and deterministic pipeline.
+        </div>
+        <span class="status-indicator good">Operational</span>
+      </div>
+
+      <!-- Status 2 -->
+      <div class="status-card">
+        <div class="status-title">BinaryAI Engine</div>
+        <div class="status-desc">
+          Reasoning engine built on GravityAI. Capsule execution, invariant validation, and structured output.
+        </div>
+        <span class="status-indicator good">Online</span>
+      </div>
+
+      <!-- Status 3 -->
+      <div class="status-card">
+        <div class="status-title">Capsule Layer</div>
+        <div class="status-desc">
+          All core capsules loaded: invariants, reasoning, consequence, provenance, SnorkelCapsule.
+        </div>
+        <span class="status-indicator good">Healthy</span>
+      </div>
+
+      <!-- Status 4 -->
+      <div class="status-card">
+        <div class="status-title">Cloud Infrastructure</div>
+        <div class="status-desc">
+          Cloud‑anchored deterministic execution environment for reasoning and validation.
+        </div>
+        <span class="status-indicator good">Stable</span>
+      </div>
+
+      <!-- Status 5 -->
+      <div class="status-card">
+        <div class="status-title">GitHub Pages Deployment</div>
+        <div class="status-desc">
+          Static site deployment for Gravity Binary, GravityAI, and BinaryAI documentation.
+        </div>
+        <span class="status-indicator good">Serving</span>
+      </div>
+
+      <!-- Status 6 -->
+      <div class="status-card">
+        <div class="status-title">WSL Development Environment</div>
+        <div class="status-desc">
+          Clean, deterministic, Linux‑native workflow for Harbor/Terminus tasks and GravityAI development.
+        </div>
+        <span class="status-indicator good">Ready</span>
+      </div>
+
+      <!-- Status 7 -->
+      <div class="status-card">
+        <div class="status-title">Harbor / Terminus Integration</div>
+        <div class="status-desc">
+          SnorkelCapsule and invariant validators aligned with Harbor/Terminus task structure.
+        </div>
+        <span class="status-indicator warn">Partial</span>
+      </div>
+
+      <!-- Status 8 -->
+      <div class="status-card">
+        <div class="status-title">Future Modules</div>
+        <div class="status-desc">
+          Instruction alignment, solvability analysis, logic classification, and agentic reasoning extensions.
+        </div>
+        <span class="status-indicator warn">In Progress</span>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="footer-shell">
+    <div>© <span id="year"></span> Gravity Binary · GravityAI · BinaryAI</div>
+    <div class="footer-links">
+      <a href="index.html" class="footer-link">Home</a>
+      <a href="architecture.html" class="footer-link">GravityAI</a>
+      <a href="capsules.html" class="footer-link">Capsules</a>
+      <a href="cloud.html" class="footer-link">Cloud</a>
+      <a href="AZ104/" class="footer-link">AZ‑104</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
