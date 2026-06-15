@@ -188,3 +188,49 @@ body {
 .section {
   padding: 80px 32px !important;
 }
+/* === GRAVITYAI ACCESSIBILITY OVERRIDES v5 (ULTRA-LARGE MODE) === */
+
+/* Global body text — very large, relaxed */
+body {
+  font-size: 1.45rem !important;
+  line-height: 2.0 !important;
+}
+
+/* Hero section */
+.hero h1 {
+  font-size: 4.2rem !important;
+}
+
+.hero p {
+  font-size: 1.85rem !important;
+  line-height: 2.1 !important;
+}
+
+/* Index panel titles */
+.panel-title {
+  font-size: 1.75rem !important;
+}
+
+/* Pills and tags — large, chunky, easy to see */
+.panel-tag,
+.panel-item-pill,
+.capsule-tag {
+  font-size: 1.55rem !important;
+  padding: 1rem 1.75rem !important;
+  border-radius: 12px !important;
+}
+
+/* Brand badge */
+.brand-mark::after {
+  font-size: 1.55rem !important;
+  padding: 10px 20px !important;
+}
+
+/* Increase spacing for breathing room */
+.grid {
+  gap: 40px !important;
+}
+
+.section {
+  padding: 100px 40px !important;
+}
